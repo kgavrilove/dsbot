@@ -27,6 +27,7 @@ class Logger {
                 bot: message.author.bot,
                 system: message.author.system,
                 username: message.author.username,
+                globalname:  message.author.globalName,
                 discriminator: message.author.discriminator,
             },
             channel: {
