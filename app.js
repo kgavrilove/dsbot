@@ -1,4 +1,6 @@
 require('dotenv').config();
+const Logger = require('./events/Logger'); 
+
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
@@ -76,6 +78,7 @@ client.on(Events.InteractionCreate, async interaction => {
         }
     }
 });
+const logger = new Logger(client);
 
 // Log in to Discord with your client's token
 client.login(process.env.BOT_TOKEN);
