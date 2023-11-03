@@ -5,6 +5,7 @@ module.exports = {
     once:false,
    async execute(message) {
         const messageData = {
+            event:'MessageCreate',
             content: message.content,
             author: {
                 id: message.author.id,
