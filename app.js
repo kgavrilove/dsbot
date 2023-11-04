@@ -1,5 +1,5 @@
 require('dotenv').config();
-const Logger = require('./events/Logger'); 
+const EventHandler = require('./app/modules/EventHandler');
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -7,17 +7,10 @@ const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 // Require the necessary discord.js classes
 
 // Create a new client instance
-const client = new Client({ intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.DirectMessages,
-    GatewayIntentBits.GuildMessageReactions,
-    GatewayIntentBits.DirectMessageReactions,
-    GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildVoiceStates,
-    GatewayIntentBits.GuildPresences,
-    GatewayIntentBits.MessageContent,
-    ] });
+const client = new Client({
+    intents: Object.values(GatewayIntentBits),
+});
+
 
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
@@ -78,7 +71,7 @@ client.on(Events.InteractionCreate, async interaction => {
         }
     }
 });
-const logger = new Logger(client);
+const logger = new EventHandler(client);
 
 // Log in to Discord with your client's token
 client.login(process.env.BOT_TOKEN);
