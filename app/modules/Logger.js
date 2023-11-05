@@ -14,7 +14,8 @@ class Logger {
                 console.error('Error creating log directory:', err);
             }
         });
-    }log(response, eventName, beauty = true) {
+    }
+    log(response, eventName, beauty = true) {
         const timestamp = new Date().toISOString();
         let serializedResponse;
         if (beauty) {

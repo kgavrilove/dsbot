@@ -20,9 +20,7 @@ class EventHandler {
     }
 
     logEvent(response, eventName) {
-        console.log(`Event: ${eventName}`);
         try {
-           // console.log(JSON.stringify(response, null, 2));
             this.EventsLogger.log(response, eventName,false);
         } catch (error) {
             console.log('Could not log the response.',error);
