@@ -9,7 +9,7 @@ services:
     volumes:
       - .:/usr/src/app 
     working_dir: /usr/src/app
-    command: sh -c "npm install && node app.js"
+    command: sh -c "npm install && node deploy-commands.js && node app.js"
     depends_on:
       - mongo
     networks:
