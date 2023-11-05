@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    image: node:20.6.1
+    container_name: nodejs_app
+    ports:
+      - "3000:3000" 
+    volumes:
+      - .:/usr/src/app 
+    working_dir: /usr/src/app
+    command: sh -c "npm install && node app.js"
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo_db
+    ports:
+      - "27017:27017" 
+    volumes:
+      - mongo-data:/data/db 
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
